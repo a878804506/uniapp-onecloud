@@ -1,0 +1,109 @@
+{
+	"pages": [{
+			"path": "pages/login/login",
+			"style": {
+				"navigationBarTitleText": "一云智慧",
+				"navigationBarBackgroundColor": "#06CFFF"
+			}
+		}, {
+			"path": "pages/login/forget",
+			"style": {}
+		}, {
+			"path": "pages/login/register",
+			"style": {}
+		},
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "首页",
+				"navigationBarBackgroundColor": "#06CFFF"
+			}
+		},
+		{
+			"path": "pages/message/message",
+			"style": {
+				"navigationBarTitleText": "聊天",
+				"navigationBarBackgroundColor": "#06CFFF"
+			}
+		},
+		{
+			"path": "pages/water/waterCustomer",
+			"style": {
+				"navigationBarTitleText": "客户管理",
+				"navigationBarBackgroundColor": "#06CFFF",
+				"titleNView": {
+					// 左右按钮配置
+					"buttons": [
+						// 左边
+						{
+							"type":"close",
+							"float": "left"
+						}
+						// https://ext.dcloud.net.cn/plugin?id=1765  按钮样式
+						// "forward"：前进按钮
+						// "back"：后退按钮
+						// "share"：分享按钮
+						// "favorite"：收藏按钮
+						// "home"：主页按钮
+						// "menu"：菜单按钮
+						// "close"：关闭按钮
+						// "none"：无样式，不显示图标
+					]
+				}
+			}
+		},
+		{
+			"path": "pages/person/person",
+			"style": {
+				"navigationBarTitleText": "个人中心",
+				"navigationBarBackgroundColor": "#06CFFF",
+				"titleNView": {
+					// 左右按钮配置
+					"buttons": [
+						// 左边
+						{
+							"color": "#000000", // 图标默认展时的颜色哈、
+							"colorPressed": "pink", //图标按下的时候的颜色哈
+							"float": "left",
+							"fontSize": "30px", //按钮上文字的大小
+							"fontSrc": "/static/font/iconfont.ttf", //按钮的图片来源哈
+							"text": "\ue62a" //按钮的unicode代码
+				
+						}
+					]
+				}
+			}
+		}
+	],
+	"globalStyle": {
+		"navigationBarTextStyle": "white",
+		"navigationBarTitleText": "一云智慧",
+		"navigationBarBackgroundColor": "#007AFF",
+		"backgroundColor": "#FFFFFF"
+	},
+	"tabBar": {
+		"color": "#000000",
+		"selectedColor": "#06CFFF",
+		"borderStyle": "black",
+		"backgroundColor": "#ffffff",
+		"list": [{
+			    // 图标：未选中的颜色 #2C2C2C    未选中颜色 #06CFFF
+				"pagePath": "pages/index/index",
+				"iconPath": "static/icon/index_notselect.png",
+				"selectedIconPath": "static/icon/index_select.png",
+				"text": "首页"
+			},
+			{
+				"pagePath": "pages/message/message",
+				"iconPath": "static/icon/message_notselect.png",
+				"selectedIconPath": "static/icon/message_select.png",
+				"text": "聊天"
+			}, {
+				"pagePath": "pages/person/person",
+				"iconPath": "static/icon/user_notselect.png",
+				"selectedIconPath": "static/icon/user_select.png",
+				"text": "我"
+			}
+		]
+	}
+}
