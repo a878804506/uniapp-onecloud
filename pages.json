@@ -27,7 +27,7 @@
 			}
 		},
 		{
-			"path": "pages/water/waterCustomer",
+			"path": "pages/water/customerMgr",
 			"style": {
 				"navigationBarTitleText": "客户管理",
 				"navigationBarBackgroundColor": "#06CFFF",
@@ -53,6 +53,30 @@
 			}
 		},
 		{
+			"path": "pages/water/customerWaterMeter",
+			"style": {
+				"navigationBarTitleText": "起止码管理",
+				"navigationBarBackgroundColor": "#06CFFF",
+				"titleNView": {
+					// 左右按钮配置
+					"buttons": [
+						// 左边
+						{
+							"type":"close",
+							"float": "left"
+						}
+					]
+				}
+			}
+		},
+		{
+		    "path" : "pages/water/customerWaterMeterEdit",
+		    "style" : {
+				"navigationBarTitleText": "编辑起止码",
+				"navigationBarBackgroundColor": "#06CFFF"
+			}
+		},
+		{
 			"path": "pages/person/person",
 			"style": {
 				"navigationBarTitleText": "个人中心",
@@ -74,7 +98,7 @@
 				}
 			}
 		}
-	],
+    ],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",
 		"navigationBarTitleText": "一云智慧",

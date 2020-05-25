@@ -107,7 +107,7 @@
 			gotoMenu(url){
 				console.log(url)
 				uni.reLaunch({
-					url: '../water/waterCustomer',
+					url: '../water'+ url,
 				});
 			},
 			loginOut() {

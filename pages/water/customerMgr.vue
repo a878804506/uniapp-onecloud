@@ -2,13 +2,19 @@
 	<view class="content">
 		<!-- 原生分页器 -->
 		<uni-pagination title="cyh" :total="total" :current="page" :pageSize="limit" @change="gotoPage"></uni-pagination>
-		
+
 		<view class="example-block">
 			<view class="table">
-				<z-table :textAlign="selectContent.textAlign" :titleTextAlign="selectContent.titleTextAlign" :tableData="nowData" :columns="nowColumn"  :stickSide="selectContent.stickSide" :showBottomSum="selectContent.showBottomSum" :showLoading="true" :emptyText='selectContent.emptyText'
-				 :tableHeight='selectContent.tableHeight' @onClick="rowClick" :singleSelect="singleSelect" :showSelect="selectContent.showSelect" @onSelect="tableSelect"></z-table>
+				<z-table :textAlign="selectContent.textAlign" :titleTextAlign="selectContent.titleTextAlign" :tableData="nowData"
+				 :columns="nowColumn" :stickSide="selectContent.stickSide" :showBottomSum="selectContent.showBottomSum"
+				 :showLoading="true" :emptyText='selectContent.emptyText' :tableHeight='selectContent.tableHeight' @onClick="rowClick"
+				 :singleSelect="singleSelect" :showSelect="selectContent.showSelect" @onSelect="tableSelect"></z-table>
 			</view>
 			<button v-if="selectContent.showSelect" class="select-btn" type="primary" @click="singleSelect = !singleSelect">{{ !singleSelect ? '开启单选' : '开启多选' }}</button>
+		</view>
+
+		<view class="myButton">
+			<button class="mini-btn" type="primary" size="mini" @click="goToPageTo">跳转</button>
 		</view>
 	</view>
 </template>
@@ -27,24 +33,22 @@
 				nowHtml: '',
 				myDebounce: this.debounce(this.setTable),
 				selectContent: {
-						id: 'f0',
-						name: '开启所有的功能', // 功能名
-						textAlign: 'center', // 内容对齐方式
-						titleTextAlign: 'center', // 表头对齐方式
-						tableData: 'finaleTableData', // 表格数据
-						columns: 'finaleColumns', // 表格列内容
-						stickSide: true, // 左侧固定
-						showBottomSum: false, // 底部显示统计
-						emptyText: '这个为空', // 表格内容为空时显示的内容
-						tableHeight: 1500, // 表格高度
-						showSelect: false ,// 开启选择功能
-						html: 'finaleHtml'
+					id: 'f0',
+					name: '开启所有的功能', // 功能名
+					textAlign: 'center', // 内容对齐方式
+					titleTextAlign: 'center', // 表头对齐方式
+					tableData: 'finaleTableData', // 表格数据
+					columns: 'finaleColumns', // 表格列内容
+					stickSide: true, // 左侧固定
+					showBottomSum: false, // 底部显示统计
+					emptyText: '这个为空', // 表格内容为空时显示的内容
+					tableHeight: 1000, // 表格高度
+					showSelect: false, // 开启选择功能
+					html: 'finaleHtml'
 				},
-				
-				finaleTableData: [
-				],
-				finaleColumns: [
-					{
+
+				finaleTableData: [],
+				finaleColumns: [{
 						title: '<span style="color: #333"><span style="vertical-align: middle;">客户编号</span></span>',
 						format: {
 							template: "<span><span style='vertical-align: middle;'>#id#</span>",
@@ -85,12 +89,15 @@
 				],
 				finaleHtml: "<z-table :tableData='finaleTableData' :columns='finaleColumns' stickSide showBottomSum emptyText='设置了showLoading=false才会看到我' :tableHeight='800' showSelect @onClick='rowClick' @onSelect='tableSelect' ></z-table>",
 				singleSelect: true,
-				
+
 				page: 1,
 				// 一页的数据量
-				limit: 20 ,
+				limit: 15,
 				// 总数据量
-				total: 817
+				total: 0,
+				// 一共多少页
+				pages: 0,
+				indexList: [],
 			}
 		},
 		components: {
@@ -107,21 +114,24 @@
 				immediate: true
 			}
 		},
-		created(){
+		created() {
 			this.getWaterCustomerList()
 		},
 		methods: {
-			getWaterCustomerList(){
+			getWaterCustomerList() {
 				this.$api.waterCustomerList({
 					page: this.page,
 					limit: this.limit
 				}).then(res => {
 					this.finaleTableData = res.data.records
 					this.total = res.data.total
+					this.page = res.data.current
+					this.limit = res.data.size
+					this.pages = res.data.pages
 					this.myDebounce()
 				})
 			},
-			gotoPage(parm){
+			gotoPage(parm) {
 				this.finaleTableData = []
 				// 分页点击
 				this.page = parm.current
@@ -156,11 +166,28 @@
 					title: `选中了TableData中下标为${selectList.join(',')}的元素`,
 					icon: 'none'
 				})
+			},
+			goToPageTo(){
+				const that = this
+				for(var i = 0 ; i < this.pages ;i++){
+					this.indexList[i] = i+1
+				}
+				uni.showActionSheet({
+				    itemList : this.indexList,
+				    success: function (res) {
+				        // console.log('选中了第' + (res.tapIndex + 1) + '个按钮');
+						that.page = res.tapIndex + 1;
+						that.getWaterCustomerList();
+				    },
+				    fail: function (res) {
+				        console.log(res.errMsg);
+				    }
+				});
 			}
 		},
-		onNavigationBarButtonTap(e){
+		onNavigationBarButtonTap(e) {
 			uni.switchTab({
-			    url: '/pages/person/person'
+				url: '/pages/person/person'
 			});
 		}
 	};
@@ -242,7 +269,7 @@
 		margin-top: 20rpx;
 		font-size: 24rpx;
 	}
-	
+
 	.type-select-box {
 		display: flex;
 		flex-wrap: wrap;
@@ -251,13 +278,13 @@
 		margin: 0 -20rpx;
 		background: #f7f9ff;
 	}
-	
+
 	.type-select-box-title {
 		width: 100%;
 		margin-bottom: 20rpx;
 		font-size: 36rpx;
 	}
-	
+
 	.type-select-item {
 		flex: 1;
 		padding: 20rpx;
@@ -270,10 +297,15 @@
 		background: #fff;
 		color: #006666;
 		text-align: center;
-		
+
 		&.selected {
 			background: #066;
 			color: #fff;
 		}
+	}
+
+	.myButton {
+		text-align: center;
+		margin: 10px 10px;
 	}
 </style>

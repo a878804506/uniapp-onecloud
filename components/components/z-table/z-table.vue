@@ -7,7 +7,7 @@
 			<view class="z-table-container">
 				<view class="z-table-pack">
 					<view class="z-table-title">
-						<view class="z-table-title-item" :class="{ 'z-table-stick-side': stickSide && index == 1 }" :style="{ width: item.width ? item.width + 'rpx' : '200rpx' }"
+						<view class="z-table-title-item" :class="{ 'z-table-stick-side': stickSide && index == 0 }" :style="{ width: item.width ? item.width + 'rpx' : '200rpx' }"
 						 v-for="(item, index) in columns" :key="index" @click="sort(item.key, index)">
 							<view v-if="showSelect && !singleSelect && index === 0" class="select-box" @click="doSelect(true)">
 								<view :class="['select-tip', {'selected': selectAll}]"></view>
@@ -24,7 +24,7 @@
 					<view v-if="tableData.length" :class="['table-container-box', {'short-table': !longTable && showBottomSum}]">
 						<view class="z-table-container-row" :class="{ 'z-table-has-bottom': showBottomSum }" v-for="(row, iIndex) in tableData"
 						 :key="iIndex">
-							<view :class="['z-table-container-col', { 'z-table-stick-side': stickSide && jIndex == 1 }]" :style="{ width: col.width ? col.width + 'rpx' : '200rpx' }"
+							<view :class="['z-table-container-col', { 'z-table-stick-side': stickSide && jIndex == 0 }]" :style="{ width: col.width ? col.width + 'rpx' : '200rpx' }"
 							 v-for="(col, jIndex) in columns" :key="jIndex" @click="itemClick(row, col)">
 								<view v-if="showSelect && jIndex === 0" class="select-box" @click="doSelect(false, iIndex)">
 									<view :class="['select-tip', {'selected': selectArr.includes(iIndex)}]"></view>
@@ -324,9 +324,9 @@
 					return n
 				}
 				if (Math.abs(n) >= 100000000) {
-					// n = Number((n / 100000000).toFixed(1)) + '亿'
+					n = Number((n / 100000000).toFixed(1)) + '亿'
 				} else if (Math.abs(n) >= 10000) {
-					// n = Number((n / 10000).toFixed(1)) + '万'
+					n = Number((n / 10000).toFixed(1)) + '万'
 				}
 				return n.toString()
 			},
