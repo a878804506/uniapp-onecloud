@@ -71,15 +71,18 @@
 							template: "<span><span style='vertical-align: middle;'>#cid#</span>",
 							names: ["cid"]
 						},
-						width: 120
+						width: 120,
+						listenerClick: true
+						
 					},
 					{
 						title: '<span style="color: #333"><span style="vertical-align: middle;">姓名</span></span>',
 						format: {
-							template: "<span><span style='vertical-align: middle;'>#cname#</span>",
-							names: ["cname"]
+							template: "<span><span style='vertical-align: middle;'>#name#</span>",
+							names: ["name"]
 						},
-						width: 140
+						width: 140,
+						listenerClick: true
 					},
 					{
 						title: "一月",
@@ -197,6 +200,9 @@
 					page: this.page,
 					limit: this.limit
 				}).then(res => {
+					res.data.records.forEach(data =>{
+						data.name = data.waterCustomer.name
+					})
 					this.finaleTableData = res.data.records
 					this.total = res.data.total
 					this.page = res.data.current
@@ -232,7 +238,7 @@
 			rowClick(item) {
 				console.log(`${JSON.stringify(item)}数据被点击`)
 				this.selectedWaterMeter = item
-				this.editMessage = "是否编辑 "+ item.cname + " 的起止码?"
+				this.editMessage = "是否编辑 "+ item.name + " 的起止码?"
 				this.$refs.popup.open()
 			},
 			tableSelect(selectList) {

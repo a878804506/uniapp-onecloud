@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<view class="title">
-			姓名: {{editWaterMeter.cname}}
+			姓名: {{editWaterMeter.name}}
 		</view>
 		<view class="title">一月</view>
 		<input class="uni-input" type="number" v-model="editWaterMeter.one" @blur="checkNumber" maxlength="6" />
@@ -61,7 +61,6 @@
 <script>
 	export default {
 		onLoad: function(option) { //option为object类型，会序列化上个页面传递的参数
-			console.log(option)
 			const params = option
 			this.page = params.page
 			this.editWaterMeter = JSON.parse(params.waterMeter)
@@ -89,7 +88,6 @@
 				const goPage = this.page
 				this.$api.updateCustomerMeter({
 					cid: this.editWaterMeter.cid,
-					cname: this.editWaterMeter.cname,
 					one: this.editWaterMeter.one,
 					two: this.editWaterMeter.two,
 					three: this.editWaterMeter.three,

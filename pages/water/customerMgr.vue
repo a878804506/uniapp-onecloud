@@ -54,7 +54,8 @@
 							template: "<span><span style='vertical-align: middle;'>#id#</span>",
 							names: ["id"]
 						},
-						width: 120
+						width: 120,
+						listenerClick: true
 					},
 					{
 						title: '<span style="color: #333"><span style="vertical-align: middle;">姓名</span></span>',
@@ -62,7 +63,8 @@
 							template: "<span><span style='vertical-align: middle;'>#name#</span>",
 							names: ["name"]
 						},
-						width: 140
+						width: 140,
+						listenerClick: true
 					},
 					{
 						title: "水费定价",
@@ -74,17 +76,20 @@
 					{
 						title: "客户住址",
 						key: "address",
-						width: 200
+						width: 200,
+						listenerClick: true
 					},
 					{
 						title: "开户时间",
 						key: "starttime",
-						width: 200
+						width: 200,
+						listenerClick: true
 					},
 					{
 						title: "用户状态",
 						key: "statusName",
-						width: 200
+						width: 200,
+						listenerClick: true
 					}
 				],
 				finaleHtml: "<z-table :tableData='finaleTableData' :columns='finaleColumns' stickSide showBottomSum emptyText='设置了showLoading=false才会看到我' :tableHeight='800' showSelect @onClick='rowClick' @onSelect='tableSelect' ></z-table>",
