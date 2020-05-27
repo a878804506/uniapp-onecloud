@@ -68,7 +68,8 @@
 				showLeft: false,
 				allWaterMenus: [
 					{'path':'/customerMgr','name':'客户管理',}, 
-					{'path':'/customerWaterMeter','name': '起止码管理'}
+					{'path':'/customerWaterMeter','name': '起止码管理'},
+					{'path':'/customerWaterInfo','name': '录入客户账单'}
 				],
 				userMenus:[]
 			}

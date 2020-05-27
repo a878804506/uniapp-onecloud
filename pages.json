@@ -70,6 +70,23 @@
 			}
 		},
 		{
+			"path": "pages/water/customerWaterInfo",
+			"style": {
+				"navigationBarTitleText": "录入客户账单",
+				"navigationBarBackgroundColor": "#06CFFF",
+				"titleNView": {
+					// 左右按钮配置
+					"buttons": [
+						// 左边
+						{
+							"type":"close",
+							"float": "left"
+						}
+					]
+				}
+			}
+		},
+		{
 		    "path" : "pages/water/customerWaterMeterEdit",
 		    "style" : {
 				"navigationBarTitleText": "编辑起止码",
