@@ -1,8 +1,7 @@
 <template>
 	<view class="container">
 		<view class="intro">欢迎来到一云智慧云平台！</view>
-		<text class="intro"></text>
-		<uni-link :href="href" :text="href"></uni-link>
+		<div>-</div>
 	</view>
 </template>
 
@@ -10,7 +9,7 @@
 	export default {
 		data() {
 			return {
-				href: 'https://myblog.erdongchen.top'
+
 			}
 		},
 		methods: {

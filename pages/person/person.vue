@@ -123,6 +123,7 @@
 					title: '退出成功'
 				});
 				this.isRotate = true
+				uni.clearStorageSync()
 				setTimeout(function() {
 					this.isRotate = false
 

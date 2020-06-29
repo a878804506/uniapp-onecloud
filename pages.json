@@ -19,10 +19,17 @@
 				"navigationBarBackgroundColor": "#06CFFF"
 			}
 		},
-		{
+		/* {
 			"path": "pages/message/message",
 			"style": {
 				"navigationBarTitleText": "聊天",
+				"navigationBarBackgroundColor": "#06CFFF"
+			}
+		}, */
+		{
+			"path": "pages/blog/blog",
+			"style": {
+				"navigationBarTitleText": "博客",
 				"navigationBarBackgroundColor": "#06CFFF"
 			}
 		},
@@ -114,6 +121,20 @@
 					]
 				}
 			}
+		},
+		{
+			"path": "pages/music/musicList",
+			"style": {
+				"navigationBarTitleText": "音乐畅快听",
+				"navigationBarBackgroundColor": "#06CFFF"
+			}
+		},
+		{
+			"path": "pages/video/video",
+			"style": {
+				"navigationBarTitleText": "视频随便看",
+				"navigationBarBackgroundColor": "#06CFFF"
+			}
 		}
     ],
 	"globalStyle": {
@@ -134,12 +155,31 @@
 				"selectedIconPath": "static/icon/index_select.png",
 				"text": "首页"
 			},
-			{
+			/* {
 				"pagePath": "pages/message/message",
 				"iconPath": "static/icon/message_notselect.png",
 				"selectedIconPath": "static/icon/message_select.png",
 				"text": "聊天"
-			}, {
+			}, */
+			{
+				"pagePath": "pages/blog/blog",
+				"iconPath": "static/icon/message_notselect.png",
+				"selectedIconPath": "static/icon/message_select.png",
+				"text": "博客"
+			},
+			{
+				"pagePath": "pages/music/musicList",
+				"iconPath": "static/icon/music_notselect.png",
+				"selectedIconPath": "static/icon/music_select.png",
+				"text": "音乐"
+			},
+			{
+				"pagePath": "pages/video/video",
+				"iconPath": "static/icon/music_notselect.png",
+				"selectedIconPath": "static/icon/music_select.png",
+				"text": "视频"
+			},
+			{
 				"pagePath": "pages/person/person",
 				"iconPath": "static/icon/user_notselect.png",
 				"selectedIconPath": "static/icon/user_select.png",

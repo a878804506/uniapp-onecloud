@@ -2,6 +2,8 @@ import loginapi from '@/api/login/login.js'
 
 import waterapi from '@/api/water/water.js'
 
+import musicapi from '@/api/music/musicApi.js'
+
 const api = {}
 
 //登录
@@ -19,5 +21,10 @@ api.waterCustomerMeter = params => waterapi.customerMeter(params)
 //修改客户的起止码
 api.updateCustomerMeter = params => waterapi.updateCustomerMeter(params)
 
+//音乐api
+api.musicList = params => musicapi.musicList(params)
+api.getPlatformsList = params => musicapi.getPlatformsList(params)
+api.getAppMusicUrl = params => musicapi.getAppMusicUrl(params)
+api.getUnlockCode = params => musicapi.getUnlockCode(params)
 
 export default api

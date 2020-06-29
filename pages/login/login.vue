@@ -45,8 +45,8 @@
 			return {
 				//logo图片
 				logoImage: '../../static/icon/onecloud.png',
-				username: 'admin', //用户/电话
-				password: 'admin', //密码
+				username: '', //用户/电话
+				password: '', //密码
 				isRotate: false, //是否加载旋转
 			};
 		},
@@ -56,24 +56,37 @@
 		},
 		mounted() {
 			_this = this;
-			//this.isLogin();
+			this.isLogin();
 		},
 		methods: {
 			isLogin() {
 				//判断缓存中是否登录过，直接登录
-				// try {
-				// 	const value = uni.getStorageSync('setUserData');
-				// 	if (value) {
-				// 		//有登录信息
-				// 		console.log("已登录用户：",value);
-				// 		_this.$store.dispatch("setUserData",value); //存入状态
-				// 		uni.reLaunch({
-				// 			url: '../../../pages/index',
-				// 		});
-				// 	}
-				// } catch (e) {
-				// 	// error
-				// }
+				try {
+					const token = uni.getStorageSync('token');
+					console.log(token)
+					if (token) {
+						//缓存中有登录信息、尝试登陆一次
+						this.$api.getInfo().then(res => {
+							if (res.code != 20000) {
+								return;
+							}
+							uni.showToast({
+								icon: 'none',
+								position: 'bottom',
+								title: '自动登录成功',
+							})
+							uni.setStorageSync('userInfo', res.data);
+							setTimeout(function() {
+								_this.isRotate = false
+								uni.reLaunch({
+									url: '../index/index',
+								});
+							}, 1500)
+						})
+					}
+				} catch (e) {
+					// error
+				}
 			},
 			startLogin() {
 				//登录
@@ -105,7 +118,6 @@
 					password: this.password
 				}).then(res => {
 					// 获得数据 
-					console.log(res)
 					if (res.code != 20000) {
 						uni.showToast({
 							icon: 'none',
@@ -119,7 +131,6 @@
 					uni.setStorageSync('token', res.data.token);
 					
 					this.$api.getInfo().then(res => {
-						console.log(res)
 						uni.showToast({
 							icon: 'none',
 							position: 'bottom',
